@@ -1,10 +1,13 @@
 <div class="card mt-3 p-3">
     <h3>Comments</h3>
     <div class="card-body">
-        <div class="mb-3">
-
-            
+        @if(session('message'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <strong>{{session('message')}}</strong>
         </div>
+        
+        @endif
 
         <form class="row g-3" wire:submit.prevent="addNewComment">
 

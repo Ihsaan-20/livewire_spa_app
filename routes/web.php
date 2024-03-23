@@ -21,3 +21,4 @@ Route::get('/', function () {
 Route::get('design', function () {
     return view('design');
 });
+

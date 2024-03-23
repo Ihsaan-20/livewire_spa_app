@@ -61,7 +61,7 @@ class Comments extends Component
         ]);
         $this->new_comment = '';
         $this->image      = '';
-        session()->flash('message', 'Comment added successfully 😁');
+        session()->flash('message', 'Comment added successfully 😇');
         
     }
 

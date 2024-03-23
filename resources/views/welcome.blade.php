@@ -36,16 +36,21 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Register</a>
-                    </li>
+                    @guest
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Register</a>
+                        </li>
+                    @endguest
+                    
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Logout</a>
-                    </li>
+                   @auth
+                   <li class="nav-item">
+                    <a class="nav-link" href="#">Logout</a>
+                </li>
+                   @endauth
                 </ul>
                 
             </div>
