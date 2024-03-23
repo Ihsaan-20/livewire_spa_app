@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic;
 
@@ -55,7 +56,8 @@ class Comments extends Component
         
 
         $createdComment = Comment::create([
-            'body'              => $this->new_comment, 'user_id' => 1,
+            'body'              => $this->new_comment,
+            'user_id' => Auth::user()->id,
             'image'             => $image,
             'support_ticket_id' => $this->supportId,
         ]);
