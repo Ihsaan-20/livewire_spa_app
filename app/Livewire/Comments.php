@@ -5,31 +5,41 @@ namespace App\Livewire;
 use App\Models\Comment;
 use Livewire\Component;
 use Illuminate\Support\Str;
+use Livewire\Attributes\On;
 use Livewire\WithPagination;
+use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic;
-use Livewire\Attributes\On;
 
 
 
 class Comments extends Component
 {
-    use WithPagination;
+    use WithPagination, WithFileUploads;
 
     public $new_comment;
     public $image;
-    public $supportId = 1;
+    public $supportId;
+    public $active;
+
 
     protected $listeners = [
         'fileUpload',
         'ticketSelected',
     ];
 
-    
-    public function fileUpload($imageData)
+
+    #[On('ticket-selected')]
+    public function ticketSelected($id)
     {
-        $this->image = $imageData;
+        
+        $this->supportId = $id;
     }
+    
+    // public function fileUpload($imageData)
+    // {
+    //     $this->image = $imageData;
+    // }
 
     public function updated($field)
     {
@@ -60,11 +70,9 @@ class Comments extends Component
         if (!$this->image) {
             return null;
         }
-
-        $img   = ImageManagerStatic::make($this->image)->encode('jpg');
-        $name  = Str::random() . '.jpg';
-        Storage::disk('public')->put($name, $img);
-        return $name;
+        $name = $this->image->getClientOriginalName();
+        $path = $this->image->storeAs('images', $name, 'public');
+        return $path;
     }
 
 

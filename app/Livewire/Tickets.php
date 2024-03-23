@@ -11,17 +11,13 @@ use App\Models\SupportTicket;
 class Tickets extends Component
 {
     public ?SupportTicket $supportTicket;
+    public $active;
 
-    
     #[On('ticket-selected')]
-    public function ticketSelected($id)
+    public function ticketActive($id)
     {
-
-        dd($id);
-        // $this->ticket_id = $ticket_id;
+        $this->active = $id;
     }
-
-
 
     public function render()
     {

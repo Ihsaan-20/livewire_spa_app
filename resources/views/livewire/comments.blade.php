@@ -3,15 +3,21 @@
     <div class="card-body">
         <div class="mb-3">
 
-            <section>
-                @if($image)
-                    <img src={{$image}} width="200" />
-                @endif
-                {{-- <input type="file" id="image" class="form-control" wire:change="$emit('fileChoosen')"> --}}
-            </section>
+            
         </div>
 
         <form class="row g-3" wire:submit.prevent="addNewComment">
+
+            <section>
+                @if($image)
+                    <img src={{$image->temporaryUrl()}} width="200" />
+                @endif
+                <input type="file" id="image" accept="image/png, image/jpeg" class="form-control" 
+                    wire:model="image">
+                @error('image') <span class="text-danger mb-3 d-block">{{ $message }}</span> @enderror
+            </section>
+
+
             <div class="col-10">
               <input type="text" class="form-control" wire:model="new_comment" id="comment" placeholder="What's in your mind...">
               @error('new_comment') <span class="text-danger mb-3 d-block">{{ $message }}</span> @enderror
@@ -34,7 +40,7 @@
                     {{$comment->body}}
                 </p>
                 @if($comment->image)
-                    <img src="{{$comment->imagePath}}" />
+                    <img src="{{$comment->imagePath}}" width="150" height="80" />
                 @endif
             </div>
         @endforeach
