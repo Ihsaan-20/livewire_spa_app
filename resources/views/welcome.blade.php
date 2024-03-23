@@ -37,12 +37,12 @@
                 </ul>
                 <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                     @guest
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="#">Login</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Register</a>
-                        </li>
+                        </li> --}}
                     @endguest
                     
 
